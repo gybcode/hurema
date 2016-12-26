@@ -4,7 +4,7 @@
   "description": "Oroszlany Human Resource Management",
   "main": "index.js",
   "scripts": {
-		"start": "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gyorfi.balogh@gmail.com",
@@ -17,5 +17,13 @@
   "devDependencies": {
     "browser-sync": "^2.18.5",
     "gulp": "^3.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gybcode/hurema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gybcode/hurema/issues"
+  },
+  "homepage": "https://github.com/gybcode/hurema#readme"
 }
