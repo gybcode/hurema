@@ -20,7 +20,6 @@ router.route('/')
 	});
 })
 .post(function(req, res){
-	var data = req.body;
 	db.run('INSERT INTO admins(sso, name, shift, area) VALUES(?,?,?,?)', req.body.sso, req.body.name, req.body.shift, req.body.area, function(err, row){
 		if(err){
 			console.log(err);

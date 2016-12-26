@@ -21,7 +21,6 @@ router.route('/')
 	});
 })
 .post(function(req, res){
-	var data = req.body;
 	db.run('INSERT INTO users(sso, name, shift, area, onboarding, offboarding, status) VALUES(?,?,?,?,?,?,?)', req.body.sso, req.body.name, req.body.shift, req.body.area, req.body.onboarding, req.body.offboarding, req.body.status, function(err, row){
 		if(err){
 			console.log(err);
