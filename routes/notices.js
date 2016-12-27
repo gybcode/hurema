@@ -4,7 +4,6 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.db');
 var qsB = require('../utils/qsBuilder');
 db.serialize(function(){
-	db.run("CREATE TABLE IF NOT EXISTS notices(id INTEGER PRIMARY KEY, sso TEXT, issuedate TEXT, issuedby TEXT, comment TEXT, type TEXT)");
 });
 
 router.route('/')
@@ -20,7 +19,7 @@ router.route('/')
 	});
 })
 .post(function(req, res){
-	db.run('INSERT INTO admins(sso, issuedate, issuedby, comment, type) VALUES(?,?,?,?,?)', req.body.sso, req.body.issuedate, req.body.issuedby, req.body.comment, req.body.type, function(err, row){
+	db.run('INSERT INTO notices(sso, issuedate, issuedby, comment, type) VALUES(?,?,?,?,?)', req.body.sso, req.body.issuedate, req.body.issuedby, req.body.comment, req.body.type, function(err, row){
 		if(err){
 			console.log(err);
 			res.status(500);
@@ -32,7 +31,7 @@ router.route('/')
 
 router.route('/:user_id')
 .get(function(req, res) {
-	db.get('SELECT * FROM admins where sso = ?', req.params.user_id, function(err, row){
+	db.get('SELECT * FROM notices where sso = ?', req.params.user_id, function(err, row){
 		if(err){
 			console.log(err);
 			res.status(500);
@@ -45,7 +44,7 @@ router.route('/:user_id')
 
 router.route('/:notice_id')
 .delete(function(req,res){
-	db.run('DELETE FROM admins where sso = ?', req.params.notice_id, function(err, row){
+	db.run('DELETE FROM notices where sso = ?', req.params.notice_id, function(err, row){
 		if(err) {
 			console.log(err);
 			res.status(500);

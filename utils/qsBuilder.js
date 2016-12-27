@@ -1,4 +1,4 @@
-var qsBuilder = {
+	var qsBuilder = {
 	build: function(table, req){
 		var qstring = 'SELECT * FROM ' + table;
 		if(req.query.filter){

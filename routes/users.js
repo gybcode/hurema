@@ -5,7 +5,6 @@ var db = new sqlite3.Database('db.db');
 var qsB = require('../utils/qsBuilder');
 
 db.serialize(function(){
-	db.run("CREATE TABLE IF NOT EXISTS users(sso TEXT, name TEXT, shift TEXT, area TEXT, onboarding TEXT, offboarding TEXT, status TEXT)");
 });
 
 router.route('/')

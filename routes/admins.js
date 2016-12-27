@@ -3,8 +3,9 @@ var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.db');
 var qsB = require('../utils/qsBuilder');
+var md5 = require('md5');
+
 db.serialize(function(){
-	db.run("CREATE TABLE IF NOT EXISTS admins(sso TEXT, name TEXT, shift TEXT, area TEXT)");
 });
 
 router.route('/')
@@ -20,7 +21,7 @@ router.route('/')
 	});
 })
 .post(function(req, res){
-	db.run('INSERT INTO admins(sso, name, shift, area) VALUES(?,?,?,?)', req.body.sso, req.body.name, req.body.shift, req.body.area, function(err, row){
+	db.run('INSERT INTO admins(sso, password, name, shift, area) VALUES(?,?,?,?,?)', req.body.sso, md5(req.body.password), req.body.name, req.body.shift, req.body.area, function(err, row){
 		if(err){
 			console.log(err);
 			res.status(500);
@@ -43,7 +44,7 @@ router.route('/:admin_id')
 	}); 
 })
 .put(function(req, res){
-	db.run('UPDATE admins SET name = ?, shift = ?, area = ? where sso = ?', req.body.name, req.body.shift, req.body.area, req.body.sso, function(err, row){
+	db.run('UPDATE admins SET password = ?, name = ?, shift = ?, area = ? where sso = ?', md5(req.body.password), req.body.name, req.body.shift, req.body.area, req.body.sso, function(err, row){
 		if(err) {
 			console.log(err);
 			res.status(500);
