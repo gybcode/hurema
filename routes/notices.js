@@ -3,16 +3,13 @@ var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.db');
 var qsB = require('../utils/qsBuilder');
-db.serialize(function(){
-});
 
 router.route('/')
 .get(function(req, res){
 	var qstring = qsB.build('notices', req);
 	db.all(qstring, function(err, rows){
 		if(err){
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message: '' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json(rows);
 		}
@@ -21,8 +18,7 @@ router.route('/')
 .post(function(req, res){
 	db.run('INSERT INTO notices(sso, issuedate, issuedby, comment, type) VALUES(?,?,?,?,?)', req.body.sso, req.body.issuedate, req.body.issuedby, req.body.comment, req.body.type, function(err, row){
 		if(err){
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message: '' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json({message: 'Notice inserted successfully!'});
 		}
@@ -33,8 +29,7 @@ router.route('/:user_id')
 .get(function(req, res) {
 	db.get('SELECT * FROM notices where sso = ?', req.params.user_id, function(err, row){
 		if(err){
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message: '' + err, code: err.code, errno: err.errno});
 		} else {
 			res.status(200);
 			res.json(row);
@@ -46,8 +41,7 @@ router.route('/:notice_id')
 .delete(function(req,res){
 	db.run('DELETE FROM notices where sso = ?', req.params.notice_id, function(err, row){
 		if(err) {
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message: '' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json({message: 'Admin with sso: ' + req.params.notice_id + ' sucessfully deleted!'});
 		}

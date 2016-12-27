@@ -4,16 +4,12 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.db');
 var qsB = require('../utils/qsBuilder');
 
-db.serialize(function(){
-});
-
 router.route('/')
 .get(function(req, res){
   var qstring = qsB.build('users', req);;
 	db.all(qstring, function(err, rows){
 		if(err){
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json(rows);
 		}
@@ -22,8 +18,7 @@ router.route('/')
 .post(function(req, res){
 	db.run('INSERT INTO users(sso, name, shift, area, onboarding, offboarding, status) VALUES(?,?,?,?,?,?,?)', req.body.sso, req.body.name, req.body.shift, req.body.area, req.body.onboarding, req.body.offboarding, req.body.status, function(err, row){
 		if(err){
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json({message: 'User inserted successfully!'});
 		}
@@ -34,8 +29,7 @@ router.route('/:user_id')
 .get(function(req, res) {
 	db.get('SELECT * FROM users where sso = ?', req.params.user_id, function(err, row){
 		if(err){
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 		} else {
 			res.status(200);
 			res.json(row);
@@ -45,8 +39,7 @@ router.route('/:user_id')
 .put(function(req, res){
 	db.run('UPDATE users SET name = ?, shift = ?, area = ?, onboarding = ?, offboarding = ?, status = ? where sso = ?', req.body.name, req.body.shift, req.body.area, req.body.onboarding, req.body.offboarding, req.body.status, req.params.user_id, function(err, row){
 		if(err) {
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json({message: 'User with sso: ' + req.body.sso + ' successfully updated!'});
 		}
@@ -55,8 +48,7 @@ router.route('/:user_id')
 .delete(function(req,res){
 	db.run('DELETE FROM users where sso = ?', req.params.user_id, function(err, row){
 		if(err) {
-			console.log(err);
-			res.status(500);
+			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 		} else {
 			res.json({message: 'User with sso: ' + req.params.user_id + ' sucessfully deleted!'});
 		}
