@@ -1,0 +1,24 @@
+{
+  "name": "hurema",
+  "description": "Oroszlany Human Resource Management",
+  "main": "index.js",
+  "authors": [
+    "gyorfi.balogh@gmail.com"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/gybcode/hurema",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.6.1",
+    "angular-cookies": "^1.6.1",
+    "angular-nvd3": "^1.0.9",
+    "angular-ui-router": "^0.3.2",
+    "d3": "^4.4.0"
+  }
+}

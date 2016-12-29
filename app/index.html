@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title></title>
+		<base href="/hurema/">
+	</head>
+	<body ng-cloak>
+		<div ui-view></div>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+		<script src="app/app.js"></script>
+		<script src="app/config.js"></script>
+		<script src="app/components/dashboard/dashboard.ctrl.js"></script>
+		<script>
+			angular.bootstrap(document, ['app']);
+		</script>
+	</body>
+</html>
