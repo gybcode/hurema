@@ -24,7 +24,7 @@ router.route('/')
 					var token = jwt.sign(user, req.app.get('secret'), {
 						expiresIn: 60*60*24
 					});
-					res.json({success: true, message: 'Authentication successfull!', token: token});
+					res.json({success: true, message: 'Authentication successfull!', token: token, user: user});
 				}
 			}
 		}

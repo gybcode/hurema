@@ -1,3 +1,25 @@
-<div class="container">
-	Dashboard
+<div layout="column" layout-fill class="container">
+	<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+		<md-toolbar class="md-hue-1">
+			<h1 class="md-toolbar-tools">UFF_sideNav</h1>
+		</md-toolbar>
+	</md-sidenav>
+	<md-toolbar class="md-hue-1" layout-padding>
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSidenav('left')">
+				<md-icon class="material-icons">menu</md-icon>
+			</md-button>
+				<h2 class="myHeader">Toolbar with Icons</h2>
+				<span class="flex"></span>
+				<md-button class="md-icon-button" aria-label="Favorite">
+					<md-icon class="material-icons">more_vert</md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Logout">
+					<md-icon class="material-icons" ng-click="vm.logout()">lock</md-icon>
+				</md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding="">
+		<p>Hello World</p>
+	</md-content>
 </div>

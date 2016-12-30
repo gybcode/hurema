@@ -1,0 +1,20 @@
+<div layout="row" layout-align="center center" style="min-height:100%">
+	<md-content layout-padding layout="column" flex-xs="80" flex-sm="60" flex="40" md-whiteframe="2">
+		<md-toolbar layout-padding class="md-accent md-hue-3">Bejelentkezés</md-toolbar>		
+		<md-content>
+			<md-subheader class="md-warn">{{vm.message}}</md-subheader>
+		</md-content>
+		<md-input-container>
+			<label>UserName</label>
+			<input type="text" ng-model="vm.sso" required>
+		</md-input-container>
+		<md-input-container>
+			<label>Password</label>
+			<input type="password" ng-model="vm.password" required>
+		</md-input-container>
+		<md-button aria-label="Bejelentkezés" ng-click="vm.auth({sso:vm.sso, password:vm.password})">
+			Bejelentkezés
+			<md-icon class="material-icons">lock_open</md-icon>
+		</md-button>
+	</md-content>
+</div>

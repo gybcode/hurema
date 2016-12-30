@@ -12,17 +12,7 @@ describe('DashboardController', function(){
 			controller = $controller('DashboardController', {$scope: $scope});
 		});
 		it('should exist', function(){
-			expect(controller.f).toBeDefined();
-		});
-		it('gets the length of the word TEST fail', function(){
-			controller.string = 'TEST';
-			controller.f();
-			expect(controller.len).toEqual(4);
-		});
-		it('gets the length wrong', function(){
-			controller.string = 'SAJT';
-			controller.f();
-			expect(controller.len).toEqual(4);
+			expect(controller).toBeDefined();
 		});
 	});
 

@@ -4,6 +4,8 @@
 	angular
 		.module('app', [
 				'ui.router',
-				'ngCookies'	
+				'ngCookies',
+				'ngMaterial',
+				'ngAnimate'
 		]);
 })();
