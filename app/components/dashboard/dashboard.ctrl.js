@@ -6,14 +6,14 @@
 		.controller('DashboardController', Controller);
 
 	/* @ngInject */
-	Controller.$inject = ['$cookies','$state', '$mdSidenav'];
-	function Controller($cookies, $state, $mdSidenav) {
+	Controller.$inject = ['$cookies','$state', '$mdSidenav', '$mdMedia'];
+	function Controller($cookies, $state, $mdSidenav, $mdMedia) {
 		var vm = this;
 
 		vm.logout = logout;
 		vm.toggleSidenav = toggleSidenav;
+		vm.media = $mdMedia;
 		activate();
-
 		////////////////
 
 		function logout(){
@@ -22,7 +22,6 @@
 		}
 
 		function toggleSidenav(navID){
-			console.log(navID);
 			$mdSidenav(navID).toggle();
 		}
 
