@@ -1,25 +1,58 @@
-<div layout="column" layout-fill class="container">
-	<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-		<md-toolbar class="md-hue-1">
-			<h1 class="md-toolbar-tools">UFF_sideNav</h1>
+<div layout="row" layout-fill class="container">
+	<!-- Sidenav  -->
+	<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4" style="min-height:100%;max-width:260px">
+		<md-toolbar class="md-hue-2" layout-padding md-whiteframe="2">
+			<div class="md-toolbar-tools">
+				<h1 class="myHeader" flex>UFF_sideNav</h1>
+				<md-button class="md-icon-button" ng-click="vm.toggleSidenav('left')" ng-hide="vm.media('gt-md')">
+					<md-icon class="material-icons">close</md-icon>
+				</md-button>
+			</div>
 		</md-toolbar>
+		<md-list>
+			<md-list-item ui-sref="dashboard.start">
+				<span flex>Kezdőoldal</span>
+				<md-icon class="material-icons">home</md-icon>
+			</md-list-item>
+		</md-list>
 	</md-sidenav>
-	<md-toolbar class="md-hue-1" layout-padding>
-		<div class="md-toolbar-tools">
-			<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSidenav('left')">
-				<md-icon class="material-icons">menu</md-icon>
-			</md-button>
+	<!-- Content -->
+	<md-content flex layout="column">
+		<!-- Toolbar -->
+		<md-toolbar class="md-hue-1" layout-padding md-whiteframe="2">
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSidenav('left')" ng-hide="vm.media('gt-md')">
+					<md-icon class="material-icons">menu</md-icon>
+				</md-button>
 				<h2 class="myHeader">Toolbar with Icons</h2>
 				<span class="flex"></span>
-				<md-button class="md-icon-button" aria-label="Favorite">
-					<md-icon class="material-icons">more_vert</md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Logout">
-					<md-icon class="material-icons" ng-click="vm.logout()">lock</md-icon>
-				</md-button>
-		</div>
-	</md-toolbar>
-	<md-content layout-padding="">
-		<p>Hello World</p>
+				<md-menu md-position-mode="target-right target">
+					<md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
+						<md-icon class="material-icons" md-menu-origin="">more_vert</md-icon>
+					</md-button>
+					<md-menu-content width="4">
+						<md-menu-item>
+							<md-button>
+								<div flex layout="row">
+									<p flex="">menu item</p>
+									<md-icon class="material-icons" md-menu-align-target>edit</md-icon>
+								</div>
+							</md-button>
+						</md-menu-item>
+						<md-menu-item ng-click="vm.logout()">
+							<md-button>
+								<div flex layout="row"="">
+									<p flex="">Kiejelentkezés</p>
+									<md-icon class="material-icons" md-menu-align-target>lock</md-icon>
+								</div>
+							</md-button>
+						</md-menu-item>
+					</md-menu-content>
+				</md-menu>
+			</div>
+		</md-toolbar>
+		<md-content layout-padding>
+		 <div ui-view></div>
+		</md-content>
 	</md-content>
 </div>

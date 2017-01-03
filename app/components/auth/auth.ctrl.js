@@ -14,7 +14,7 @@
 		function login(data){
 			authService.authenticate(data).then(function(response){
 				if(response.success == true){
-					$state.go('dashboard');
+					$state.go('dashboard.home');
 				} else {
 					vm.message = response.message;
 				}
