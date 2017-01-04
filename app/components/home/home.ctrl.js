@@ -6,8 +6,8 @@
 		.controller('HomeController', Controller);
 
 	/* @ngInject */
-	Controller.$inject = ['$cookies'];
-	function Controller($cookies) {
+	Controller.$inject = ['$cookies', '$scope'];
+	function Controller($cookies, $scope) {
 		var vm = this;
 
 		activate();

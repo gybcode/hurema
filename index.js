@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 
 app.use(function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
 	next();
 });
@@ -27,6 +27,7 @@ var noticeRouter = require('./routes/notices');
 app.use('/api/authenticate', authenticate);
 app.use(function(req,res,next){
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+	var acrm = req.headers['access-control-request-method'];
 	if(token){
 		jwt.verify(token, app.get('secret'), function(err, decoded){
 			if(err){
@@ -36,7 +37,9 @@ app.use(function(req,res,next){
 				next();
 			}
 		});
-	} else {
+	} else if(acrm){
+		next();
+	}	else {
 		return res.status(403).send({
 			success: false,
 			message: 'No token provided'

@@ -1,48 +1,80 @@
 <div layout="row" layout-fill class="container">
 	<!-- Sidenav  -->
-	<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4" style="min-height:100%;max-width:260px">
-		<md-toolbar class="md-hue-2" layout-padding md-whiteframe="2">
+	<md-sidenav style="background-color:#212121;color:#e0e0e0" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="min-height:100%;max-width:260px">
+		<md-toolbar class="md-hue-1" layout-padding>
 			<div class="md-toolbar-tools">
-				<h1 class="myHeader" flex>UFF_sideNav</h1>
+				<h2 flex class="myHeader">ORO - DiHuReMa</h2>
 				<md-button class="md-icon-button" ng-click="vm.toggleSidenav('left')" ng-hide="vm.media('gt-md')">
 					<md-icon class="material-icons">close</md-icon>
 				</md-button>
 			</div>
 		</md-toolbar>
-		<md-list>
-			<md-list-item ui-sref="dashboard.start">
+		<md-list style="padding-top:0" class="myList">
+			<md-list-item ui-sref="dashboard.home" ui-sref-active="active" ng-click="vm.toggleSidenav('left')">
 				<span flex>Kezdőoldal</span>
 				<md-icon class="material-icons">home</md-icon>
+			</md-list-item>
+			<md-divider style="border-color:#505050"></md-divider>
+			<md-subheader class="mySubheader">Létszám nyilvántartás</md-subheader>
+			<md-list-item ui-sref="dashboard.hclist" ui-sref-active="active" ng-click="vm.toggleSidenav('left')">
+				<span flex>Létszámlista</span>
+				<md-icon class="material-icons">list</md-icon>
+			</md-list-item>
+			<md-list-item ui-sref="dashboard.home">
+				<span flex>Hiányzási statisztika</span>
+				<md-icon class="material-icons">multiline_chart</md-icon>
+			</md-list-item>
+			<md-divider style="border-color:#505050"></md-divider>
+			<md-subheader class="mySubheader">Hourly PD</md-subheader>
+			<md-list-item ui-sref="dashboard.home">
+				<span flex>Értékelés</span>
+				<md-icon class="material-icons">assignment_ind</md-icon>
+			</md-list-item>
+			<md-list-item ui-sref="dashboard.home">
+				<span flex>Ponthatárok</span>
+				<md-icon class="material-icons">format_list_numbered</md-icon>
+			</md-list-item>
+			<md-list-item ui-sref="dashboard.home">
+				<span flex>Státusz jelentés</span>
+				<md-icon class="material-icons">insert_chart</md-icon>
 			</md-list-item>
 		</md-list>
 	</md-sidenav>
 	<!-- Content -->
 	<md-content flex layout="column">
 		<!-- Toolbar -->
-		<md-toolbar class="md-hue-1" layout-padding md-whiteframe="2">
+		<md-toolbar class="md-hue-1" layout-padding>
 			<div class="md-toolbar-tools">
 				<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSidenav('left')" ng-hide="vm.media('gt-md')">
 					<md-icon class="material-icons">menu</md-icon>
 				</md-button>
-				<h2 class="myHeader">Toolbar with Icons</h2>
-				<span class="flex"></span>
+				<img src="../../components/brandkit/img/ge-monogram.png" class="md-avatar" style="margin-right:10px">
+				<h2 class="myHeader">ORO - Direct Human Resource Manager</h2>
+				<span flex></span>
 				<md-menu md-position-mode="target-right target">
 					<md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
-						<md-icon class="material-icons" md-menu-origin="">more_vert</md-icon>
+						<md-icon class="material-icons" md-menu-origin="">person_pin</md-icon>
 					</md-button>
 					<md-menu-content width="4">
 						<md-menu-item>
+							<div flex layout="row"style="text-align:right">
+								<md-icon class="material-icons">person</md-icon>
+								<span flex>{{user.data.name}}</span>
+							</div>
+						</md-menu-item>
+						<md-divider></md-divider>
+						<md-menu-item>
 							<md-button>
 								<div flex layout="row">
-									<p flex="">menu item</p>
-									<md-icon class="material-icons" md-menu-align-target>edit</md-icon>
+									<span flex>Saját adatok</span>
+									<md-icon class="material-icons" md-menu-align-target>person_pin</md-icon>
 								</div>
 							</md-button>
 						</md-menu-item>
 						<md-menu-item ng-click="vm.logout()">
 							<md-button>
 								<div flex layout="row"="">
-									<p flex="">Kiejelentkezés</p>
+									<span flex>Kiejelentkezés</span>
 									<md-icon class="material-icons" md-menu-align-target>lock</md-icon>
 								</div>
 							</md-button>

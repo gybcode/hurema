@@ -9,6 +9,8 @@
 	Config.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider', '$mdThemingProvider'];
 	function Config($urlRouterProvider, $stateProvider, $locationProvider, $mdThemingProvider) {
 		//$locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(false);
+		$locationProvider.hashPrefix('');
 		// theming
 		$mdThemingProvider.theme('myCustom')
 			.primaryPalette('grey', {
@@ -34,6 +36,12 @@
 				url:'/home',
 				templateUrl: './components/home/home.html',
 				controller: 'HomeController',
+				controllerAs: 'vm'
+			})
+			.state('dashboard.hclist', {
+				url: '/list',
+				templateUrl: './components/hclist/hclist.html',
+				controller: 'HcListController',
 				controllerAs: 'vm'
 			});
 		$stateProvider.

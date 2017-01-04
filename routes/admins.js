@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('db.db');
+//var sqlite3 = require('sqlite3').verbose();
+//var db = new sqlite3.Database('db.db');
+var db = require('../utils/conn');
 var qsB = require('../utils/qsBuilder');
 var md5 = require('md5');
 
 router.route('/')
 .get(function(req, res, next){
 	var qstring = qsB.build('admins', req);
-	db.all(qstring, function(err, rows){
+	db.query(qstring, function(err, rows){
 		if(err){
 			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 			next();
@@ -18,7 +19,7 @@ router.route('/')
 	});
 })
 .post(function(req, res, next){
-	db.run('INSERT INTO admins(sso, password, name, shift, area) VALUES(?,?,?,?,?)', req.body.sso, md5(req.body.password), req.body.name, req.body.shift, req.body.area, function(err, row){
+	db.query('INSERT INTO admins(sso, password, name, shift, area) VALUES(?,?,?,?,?)', [req.body.sso, md5(req.body.password), req.body.name, req.body.shift, req.body.area], function(err, row){
 		if(err){
 			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 			next();
@@ -30,7 +31,7 @@ router.route('/')
 
 router.route('/:admin_id')
 .get(function(req, res, next) {
-	db.get('SELECT * FROM admins where sso = ?', req.params.admin_id, function(err, row){
+	db.query('SELECT * FROM admins where sso = ?', [req.params.admin_id], function(err, row){
 		if(err){
 			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 			next();
@@ -41,7 +42,7 @@ router.route('/:admin_id')
 	}); 
 })
 .put(function(req, res, next){
-	db.run('UPDATE admins SET password = ?, name = ?, shift = ?, area = ? where sso = ?', md5(req.body.password), req.body.name, req.body.shift, req.body.area, req.body.sso, function(err, row){
+	db.query('UPDATE admins SET password = ?, name = ?, shift = ?, area = ? where sso = ?', [md5(req.body.password), req.body.name, req.body.shift, req.body.area, req.body.sso], function(err, row){
 		if(err) {
 			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 			next();
@@ -51,7 +52,7 @@ router.route('/:admin_id')
 	});
 })
 .delete(function(req,res,next){
-	db.run('DELETE FROM admins where sso = ?', req.params.admin_id, function(err, row){
+	db.query('DELETE FROM admins where sso = ?', [req.params.admin_id], function(err, row){
 		if(err) {
 			res.status(500).send({message:'' + err, code: err.code, errno: err.errno});
 			next();
