@@ -5,7 +5,7 @@ describe('AuthController', function(){
 		$controller = _$controller_;
 		$authService = _authService_;
 	}));
-	describe('controller.activate', function(){
+	describe('controller', function(){
 		var $scope, controller, authService;
 		beforeEach(function(){
 			$scope = {};
@@ -15,7 +15,7 @@ describe('AuthController', function(){
 		it('should exist', function(){
 			expect(controller).toBeDefined();
 		});
-		it('should have  function', function(){
+		it('should have function', function(){
 			expect(controller.auth).toBeDefined();
 		});
 	});

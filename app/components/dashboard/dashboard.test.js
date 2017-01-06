@@ -5,7 +5,7 @@ describe('DashboardController', function(){
 	beforeEach(inject(function(_$controller_){
 		$controller = _$controller_;
 	}));
-	describe('$scope.f', function(){
+	describe('controller', function(){
 		var $scope, controller;
 		beforeEach(function(){
 			$scope = {};

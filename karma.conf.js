@@ -17,6 +17,11 @@ module.exports = function(config) {
     files: [
 			'./bower_components/angular/angular.min.js',
 			'./bower_components/angular-ui-router/release/angular-ui-router.min.js',
+			'./bower_components/angular-aria/angular-aria.min.js',
+			'./bower_components/angular-sanitize/angular-sanitize.min.js',
+			'./bower_components/angular-messages/angular-messages.min.js',
+			'./bower_components/angular-animate/angular-animate.min.js',
+			'./bower_components/angular-material/angular-material.min.js',
 			'./bower_components/angular-cookies/angular-cookies.min.js',
 			'./node_modules/angular-mocks/angular-mocks.js',
 			'./app/app.js',
@@ -64,7 +69,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
-			'Chromium'
+			'Chrome'
 		],
 
 

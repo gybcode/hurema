@@ -9,6 +9,8 @@ describe('HcListController', function(){
 		var $scope, controller;
 		beforeEach(function(){
 			$scope = {};
+			$scope.user = {};
+			$scope.user.data = {"name":"Name", "sso": "FAKE"};
 			controller = $controller('HcListController', {$scope: $scope});
 		});
 		it('should exist', function(){

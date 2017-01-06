@@ -4,8 +4,8 @@
   "description": "Oroszlany Human Resource Management",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js",
+    "test": "karma start"
   },
   "author": "gyorfi.balogh@gmail.com",
   "license": "ISC",
