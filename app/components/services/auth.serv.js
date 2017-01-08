@@ -14,7 +14,8 @@
 			var req = {
 				method: 'POST',
 				headers: {'Content-Type':'application/json'},
-				url: 'http://3.228.180.15/api/authenticate',
+				//url: 'http://3.228.180.15/api/authenticate',
+				url : 'http://localhost:8080/api/authenticate',
 				data: data // needs to be object {username: username, password: password}
 			};
 			return $http(req).then(function(response){

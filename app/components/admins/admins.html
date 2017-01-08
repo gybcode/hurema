@@ -1,0 +1,76 @@
+<md-content style="height:100%">
+	<md-toolbar class="md-accent md-hue-1">
+		<div class="md-toolbar-tools">
+			<md-icon class="material-icons">group</md-icon>&nbsp;
+			<h2 class="myHeader" flex>Adminsztrátorok listája</h2>
+		</div>
+	</md-toolbar>
+	<md-content flex style="height:100%">
+		<md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+			<md-tab id="editAdmin">
+				<md-tab-label>Lista</md-tab-label>
+				<md-tab-body>
+					<md-list>
+						<md-list-item ng-if="vm.admins.length == 0">List is empty</md-list-item>
+						<md-list-item ng-repeat="admin in vm.admins">
+							<div><b>{{admin.sso}}</b>&nbsp;</div>
+							<div flex>{{admin.name}}</div>
+						</md-list-item>
+					</md-list>
+				</md-tab-body>
+			</md-tab>
+			<md-tab id="newAdmin">
+				<md-tab-label>Új</md-tab-label>
+				<md-tab-body>
+					<div layout-padding="20" flex-gt-sm="50" flex-offset-gt-sm="25">
+						<form name="newAdminForm" ng-submit="newAdminForm.$valid && vm.saveAdmin()" novalidate>
+							<div layout-gt-xs="row">
+								<md-input-container class="md-block" flex-xs="100" flex="20">
+									<label translate>SSO</label>
+									<input required md-no-asterisk name="sso" ng-model="vm.new.sso">
+								</md-input-container>
+								<md-input-container class="md-block" flex>
+									<label>Név</label>
+									<input required md-no-asterisk name="name" ng-model="vm.new.name">
+								</md-input-container>
+							</div>
+							<div layout-gt-xs="row">
+								<md-input-container class="md-block" flex-xs="100" flex="50">
+									<label>Jelszó</label>
+									<input required md-no-asterisk type="password" name="password" ng-model="vm.new.password" ng-change="vm.pwvalid()">
+								</md-input-container>
+								<md-input-container class="md-block" flex>
+									<label>Jelszó még egyszer</label>
+									<input required md-no-asterisk type="password" ng-model="vm.new.password2" name="password2" ng-change="vm.pwvalid()">
+									<div ng-show="vm.pserror">
+										<div style="color:red">Nem egyezik a 2 jelszó!</div>
+									</div>
+								</md-input-container>
+							</div>
+							<div layout-gt-xs="row">
+								<md-input-container class="md-block" flex-xs="100" flex="50">
+									<label>Terület</label>
+									<md-select ng-model="vm.new.area">
+										<md-option ng-repeat="item in vm.areas" value="{{item.name}}">{{item.name}}</md-option>
+									</md-select>
+								</md-input-container>
+								<md-input-container class="md-block" flex>
+									<label>Műszak</label>
+									<md-select ng-model="vm.new.shift">
+										<md-option ng-repeat="item in ['A','B','C','D', '%']" value="{{item}}">{{item}}</md-option>
+									</md-select>
+								</md-input-container>
+							</div>
+							<div layout-align="center center" layout-gt-xs="row">
+								<md-button type="submit" class="md-raised md-accent md-hue-1">
+									<span flex>Mentés</span>
+									<md-icon class="material-icons">save</md-icon>
+								</md-button>
+							</div>
+							</from>
+					</div>
+				</md-tab-body>
+			</md-tab>
+		</md-tabs>
+	</md-content>
+</md-content>

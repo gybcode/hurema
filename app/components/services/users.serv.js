@@ -17,7 +17,8 @@
 		function get(id,token){
 			var req = {
 				method: 'GET',
-				url: 'http://3.228.180.15/api/users/'+id + '?token=' + token,
+				//url: 'http://3.228.180.15/api/users/'+id + '?token=' + token,
+				url: 'http://localhost:8080/api/users/' + id,
 				headers: {'Content-Type':'application/json', 'x-access-token':token}
 			};
 			return $http(req).then(function(response){
@@ -36,7 +37,8 @@
 		function query(qstring,token){
 			var req = {
 				method: 'GET',
-				url: 'http://3.228.180.15/api/users/?' + qstring,// + '&token=' + token,
+				//url: 'http://3.228.180.15/api/users/?' + qstring,// + '&token=' + token,
+				url: 'http://localhost:8080/api/users/?' + qstring,
 				headers: {'Content-Type':'application/json', 'x-access-token':token}
 			};						
 			return $http(req).then(function(response){

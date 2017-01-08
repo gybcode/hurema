@@ -3,9 +3,10 @@
 
 	angular
 		.module('app', [
-				'ui.router',
-				'ngCookies',
-				'ngMaterial',
-				'ngAnimate'
+			'ui.router',
+			'ngCookies',
+			'ngMaterial',
+			'ngMessages',
+			'ngAnimate'
 		]);
 })();

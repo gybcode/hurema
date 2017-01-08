@@ -38,6 +38,11 @@
 				<span flex>Státusz jelentés</span>
 				<md-icon class="material-icons">insert_chart</md-icon>
 			</md-list-item>
+			<md-subheader class="mySubheader">Adminsztrátorok</md-subheader>
+			<md-list-item ui-sref="dashboard.admins" ui-sref-active="active" ng-click="vm.toggleSidenav('left');">
+				<span flex>Lista</span>
+				<md-icon class="material-icons">group</md-icon>
+			</md-list-item>
 		</md-list>
 	</md-sidenav>
 	<!-- Content -->
@@ -83,7 +88,7 @@
 				</md-menu>
 			</div>
 		</md-toolbar>
-		<md-content layout-padding>
+		<md-content>
 		 <div ui-view></div>
 		</md-content>
 	</md-content>
